@@ -14,7 +14,7 @@ if sys.platform == "win32":
 
 BASE_DIR = Path(__file__).resolve().parent
 ARTICULOS_DIR = BASE_DIR / "articulos"
-SITE_URL = "https://blademxgit.github.io/finanzas-inteligentes"
+SITE_URL = os.getenv("SITE_URL", "https://blademxgit.github.io")
 
 # Google AdSense Publisher ID (Configurable via env var or placeholder)
 ADSENSE_PUB_ID = os.getenv("ADSENSE_PUB_ID", "ca-pub-7532709201895063")
