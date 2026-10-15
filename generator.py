@@ -17,7 +17,8 @@ ARTICULOS_DIR = BASE_DIR / "articulos"
 SITE_URL = "https://blademxgit.github.io/finanzas-inteligentes"
 
 # Google AdSense Publisher ID (Configurable via env var or placeholder)
-ADSENSE_PUB_ID = os.getenv("ADSENSE_PUB_ID", "ca-pub-XXXXXXXXXXXXXXXX")
+ADSENSE_PUB_ID = os.getenv("ADSENSE_PUB_ID", "ca-pub-7532709201895063")
+PUB_NUMERIC_ID = ADSENSE_PUB_ID.replace("ca-pub-", "pub-")
 
 # Fixed publish date (only change it when the content really changes)
 PUBLISH_DATE_ISO = "2026-10-14"
@@ -539,6 +540,11 @@ def build_all():
     sitemap = generate_sitemap(TOPICS)
     (BASE_DIR / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     print("  🗺️ Mapa del sitio generado: sitemap.xml")
+
+    # 4. Build ads.txt
+    ads_txt_content = f"# Archivo ads.txt para verificación oficial de Google AdSense\ngoogle.com, {PUB_NUMERIC_ID}, DIRECT, f08c47fec0942fa0\n"
+    (BASE_DIR / "ads.txt").write_text(ads_txt_content, encoding="utf-8")
+    print(f"  💰 ads.txt generado: {PUB_NUMERIC_ID}")
 
     print(f"\n✅ Portal compilado con éxito. {len(TOPICS)} artículos listos para Google AdSense.")
 
