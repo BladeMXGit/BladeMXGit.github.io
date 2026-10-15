@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import os
 import re
 import json
@@ -14,7 +14,11 @@ if sys.platform == "win32":
 
 BASE_DIR = Path(__file__).resolve().parent
 ARTICULOS_DIR = BASE_DIR / "articulos"
-SITE_URL = "https://blademasterlol.github.io/finanzas-inteligentes"
+SITE_URL = "https://blademxgit.github.io/finanzas-inteligentes"
+
+# Fixed publish date (only change it when the content really changes)
+PUBLISH_DATE_ISO = "2026-10-14"
+PUBLISH_DATE_ES = "14 de octubre de 2026"
 
 # Curated catalog of high-paying Google AdSense search queries (Spain/LatAm)
 TOPICS = [
@@ -205,8 +209,8 @@ def render_article_html(topic: dict) -> str:
     desc = topic["description"]
     cat = topic["category"]
     read_time = topic["read_time"]
-    date_str = datetime.now().strftime("%d de %B de %Y")
-    iso_date = datetime.now().strftime("%Y-%m-%d")
+    date_str = PUBLISH_DATE_ES
+    iso_date = PUBLISH_DATE_ISO
     url = f"{SITE_URL}/articulos/{slug}.html"
 
     # AdSense Placement Templates (Ready for publisher client ID)
@@ -443,7 +447,7 @@ def render_home_index_html(topics: list) -> str:
 
 def generate_sitemap(topics: list) -> str:
     """Generates sitemap.xml for instant indexing by Googlebot."""
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = PUBLISH_DATE_ISO
     urls = [
         f"""  <url>
     <loc>{SITE_URL}/</loc>
