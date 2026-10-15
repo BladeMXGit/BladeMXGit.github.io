@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blademasterlol.github.io/finanzas-inteligentes/sitemap.xml

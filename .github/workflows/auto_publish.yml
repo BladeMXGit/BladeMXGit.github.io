@@ -1,0 +1,48 @@
+name: Publicación Diaria de Artículos y Despliegue en GitHub Pages
+
+on:
+  schedule:
+    # Se ejecuta todos los días a las 08:00 AM UTC de forma automática
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Permite publicar manualmente con 1 clic
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generar y actualizar contenido web
+        run: |
+          python generator.py
+
+      - name: Guardar cambios en el repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Auto-publicar nuevo contenido y actualizar sitemap [skip ci]" || echo "Sin cambios nuevos"
+          git push
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Subir artefacto para GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
