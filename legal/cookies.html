@@ -5,30 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Cookies | Finanzas Inteligentes</title>
   <meta name="robots" content="noindex, follow">
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#0B0F19',
+            darkcard: '#161F30',
+            darkborder: '#233047'
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased font-sans">
-  <header class="bg-white border-b border-gray-200 py-4 shadow-sm">
+<body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-slate-100 antialiased font-sans transition-colors duration-200">
+  <header class="bg-white dark:bg-slate-900/90 border-b border-gray-200 dark:border-slate-800 py-3.5 shadow-sm sticky top-0 backdrop-blur-md z-50">
     <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
-      <a href="../index.html" class="text-xl font-bold text-emerald-600">📈 Finanzas Inteligentes</a>
-      <a href="../index.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600">← Volver al Inicio</a>
+      <a href="../index.html" class="text-lg sm:text-xl font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+        <span>📈 Finanzas Inteligentes</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleDarkMode()" aria-label="Cambiar tema" class="p-2 sm:px-3 sm:py-1.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-700 dark:text-amber-400 text-xs font-semibold">
+          <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <a href="../index.html" class="text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">← Volver al Inicio</a>
+      </div>
     </div>
   </header>
 
   <main class="max-w-4xl mx-auto px-4 py-12">
-    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
-      <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Política de Cookies</h1>
-      <p class="text-gray-600 mb-4 text-sm">Última actualización: 14 de octubre de 2026</p>
+    <div class="bg-white dark:bg-slate-800/90 p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700/80">
+      <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-6">Política de Cookies</h1>
+      <p class="text-gray-500 dark:text-slate-400 mb-6 text-sm">Última actualización: 14 de octubre de 2026</p>
 
-      <div class="space-y-6 text-gray-700 leading-relaxed">
-        <h2 class="text-xl font-bold text-gray-900">1. ¿Qué son las cookies?</h2>
-        <p>Las cookies son pequeños archivos que los sitios web guardan en tu navegador para recordar información sobre tu visita.</p>
+      <div class="space-y-6 text-gray-700 dark:text-slate-300 leading-relaxed text-base">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-6">1. ¿Qué son las cookies?</h2>
+        <p>Una cookie es un pequeño archivo de texto que los sitios web almacenan en su navegador para recordar información sobre su visita, como su preferencia de idioma o tema de color (modo claro u oscuro).</p>
 
-        <h2 class="text-xl font-bold text-gray-900">2. Cookies que utiliza este sitio</h2>
-        <p>Este sitio no utiliza cookies propias. Si en el futuro se activan anuncios de Google AdSense, Google y sus socios podrán usar cookies para mostrar anuncios basados en visitas anteriores a este u otros sitios web.</p>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-6">2. Cookies que utilizamos</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Cookies técnicas esenciales:</strong> Necesarias para recordar su preferencia de modo oscuro/claro y el estado de aceptación del banner de consentimiento.</li>
+          <li><strong>Cookies publicitarias (Google AdSense):</strong> Google y proveedores asociados utilizan cookies para publicar anuncios relevantes y limitar la frecuencia con la que ve un mismo anuncio.</li>
+        </ul>
 
-        <h2 class="text-xl font-bold text-gray-900">3. Cómo desactivarlas</h2>
-        <p>Puedes desactivar la publicidad personalizada en <a class="text-emerald-600 underline" href="https://adssettings.google.com" rel="nofollow">Configuración de anuncios de Google</a> o bloquear las cookies desde la configuración de tu navegador.</p>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-6">3. Cómo gestionar o bloquear las cookies</h2>
+        <p>Puede cambiar sus preferencias o desactivar las cookies en cualquier momento desde los ajustes de privacidad de su navegador web (Chrome, Firefox, Safari o Edge).</p>
       </div>
     </div>
   </main>

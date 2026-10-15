@@ -5,37 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Política de Privacidad | Finanzas Inteligentes</title>
   <meta name="robots" content="noindex, follow">
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#0B0F19',
+            darkcard: '#161F30',
+            darkborder: '#233047'
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased font-sans">
-  <header class="bg-white border-b border-gray-200 py-4 shadow-sm">
+<body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-slate-100 antialiased font-sans transition-colors duration-200">
+  <header class="bg-white dark:bg-slate-900/90 border-b border-gray-200 dark:border-slate-800 py-3.5 shadow-sm sticky top-0 backdrop-blur-md z-50">
     <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
-      <a href="../index.html" class="text-xl font-bold text-emerald-600 flex items-center gap-2">
+      <a href="../index.html" class="text-lg sm:text-xl font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
         <span>📈 Finanzas Inteligentes</span>
       </a>
-      <a href="../index.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600">← Volver al Inicio</a>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleDarkMode()" aria-label="Cambiar tema" class="p-2 sm:px-3 sm:py-1.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-700 dark:text-amber-400 text-xs font-semibold">
+          <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <a href="../index.html" class="text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400">← Volver al Inicio</a>
+      </div>
     </div>
   </header>
 
   <main class="max-w-4xl mx-auto px-4 py-12">
-    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
-      <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Política de Privacidad</h1>
-      <p class="text-gray-600 mb-4 text-sm">Última actualización: 14 de octubre de 2026</p>
+    <div class="bg-white dark:bg-slate-800/90 p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700/80">
+      <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-6">Política de Privacidad</h1>
+      <p class="text-gray-500 dark:text-slate-400 mb-6 text-sm">Última actualización: 14 de octubre de 2026</p>
 
-      <div class="space-y-6 text-gray-700 leading-relaxed">
-        <p>En <strong>Finanzas Inteligentes</strong>, accesible desde nuestro sitio web, una de nuestras principales prioridades es la privacidad de nuestros visitantes. Este documento de Política de Privacidad contiene los tipos de información que recopilamos y cómo la utilizamos.</p>
+      <div class="space-y-6 text-gray-700 dark:text-slate-300 leading-relaxed text-base">
+        <p>En <strong>Finanzas Inteligentes</strong>, accesible desde nuestro sitio web, una de nuestras principales prioridades es la privacidad de nuestros visitantes. Este documento describe cómo se recopila y gestiona la información.</p>
 
-        <h2 class="text-xl font-bold text-gray-900 mt-6">1. Información que recopilamos</h2>
-        <p>No recopilamos información personal identificable a menos que usted decida ponerse en contacto con nosotros directamente. La navegación en este sitio web es completamente anónima.</p>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-6">1. Información recopilada</h2>
+        <p>No recopilamos información personal sensible como nombres, números de teléfono o domicilios a menos que el usuario se comunique voluntariamente por correo electrónico.</p>
 
-        <h2 class="text-xl font-bold text-gray-900 mt-6">2. Archivos de registro y análisis</h2>
-        <p>Finanzas Inteligentes sigue un procedimiento estándar de uso de archivos de registro. Estos archivos registran a los visitantes cuando visitan sitios web con fines estadísticos y de seguridad (direcciones IP, tipo de navegador, proveedor de servicios de Internet, marca de tiempo y páginas de referencia).</p>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-6">2. Google AdSense y Cookies de Terceros</h2>
+        <p>Google, como proveedor externo, utiliza cookies para publicar anuncios en nuestro sitio. El uso de cookies de publicidad permite a Google y a sus socios publicar anuncios a los usuarios en función de sus visitas a este y a otros sitios de Internet.</p>
+        <p>Los usuarios pueden inhabilitar la publicidad personalizada consultando la <a href="https://adssettings.google.com/" target="_blank" class="text-emerald-600 dark:text-emerald-400 underline">Configuración de anuncios de Google</a>.</p>
 
-        <h2 class="text-xl font-bold text-gray-900 mt-6">3. Cookies y Publicidad de Terceros (Google AdSense)</h2>
-        <p>Google es uno de los proveedores externos en nuestro sitio. También utiliza cookies, conocidas como cookies de DART, para publicar anuncios a los visitantes de nuestro sitio en función de su visita a este y otros sitios en Internet. Los visitantes pueden optar por rechazar el uso de cookies de DART visitando la Política de privacidad de la red de contenido y anuncios de Google.</p>
-
-        <h2 class="text-xl font-bold text-gray-900 mt-6">4. Consentimiento</h2>
-        <p>Al utilizar nuestro sitio web, usted acepta nuestra Política de Privacidad y sus términos.</p>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white mt-6">3. Cumplimiento del RGPD</h2>
+        <p>Cumplimos con las directrices del Reglamento General de Protección de Datos (RGPD) de la Unión Europea, garantizando los derechos de acceso, rectificación y supresión.</p>
       </div>
     </div>
   </main>

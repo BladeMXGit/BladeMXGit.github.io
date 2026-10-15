@@ -37,45 +37,93 @@
   }
   </script>
 
+  
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#0B0F19',
+            darkcard: '#161F30',
+            darkborder: '#233047'
+          }
+        }
+      }
+    }
+  </script>
+    
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased font-sans">
+<body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-slate-100 antialiased font-sans transition-colors duration-200">
   <!-- Navegación Superior -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="../index.html" class="text-xl font-bold text-emerald-600 flex items-center gap-2">
+  <header class="bg-white dark:bg-slate-900/90 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-50 backdrop-blur-md shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      <a href="../index.html" class="text-lg sm:text-xl font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
         <span>📈 Finanzas Inteligentes</span>
       </a>
-      <a href="../index.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600">← Ver todas las guías</a>
+      <div class="flex items-center gap-3">
+        
+    <button onclick="toggleDarkMode()" aria-label="Cambiar tema claro/oscuro" class="p-2 sm:px-3 sm:py-2 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-700 dark:text-amber-400 hover:bg-gray-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-xs font-semibold shadow-sm">
+      <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+      <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      <span class="hidden sm:inline text-gray-700 dark:text-slate-200">Modo</span>
+    </button>
+    
+        <a href="../index.html" class="text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          ← Volver al inicio
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- Contenido Principal -->
   <main class="max-w-3xl mx-auto px-4 py-10">
-    <article class="bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-gray-100">
+    <article class="bg-white dark:bg-slate-800/90 p-6 sm:p-10 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700/80">
       <!-- Breadcrumbs -->
-      <nav class="text-xs text-gray-500 mb-4 flex items-center gap-2">
+      <nav class="text-xs text-gray-500 dark:text-slate-400 mb-4 flex items-center gap-2">
         <a href="../index.html" class="hover:underline">Inicio</a> &gt;
-        <span class="text-emerald-600 font-medium">Ahorro y Presupuesto</span>
+        <span class="text-emerald-600 dark:text-emerald-400 font-medium">Ahorro y Presupuesto</span>
       </nav>
 
       <!-- Encabezado del Artículo -->
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-3xl">📊</span>
+        <span class="bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 px-3 py-1 rounded-full text-xs font-bold">Ahorro y Presupuesto</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-gray-900 dark:text-white leading-tight mb-4">
         La regla 50/30/20: El método definitivo para organizar tu dinero y ahorrar sin sufrir
       </h1>
 
-      <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 mb-8 border-b border-gray-100 pb-4">
-        <span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Ahorro y Presupuesto</span>
-        <span>⏱️ Lectura: 5 min</span>
-        <span>📅 Actualizado: 14 de octubre de 2026</span>
+      <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 dark:text-slate-400 mb-8 border-b border-gray-100 dark:border-slate-700 pb-4">
+        <span class="flex items-center gap-1">⏱️ Lectura: 5 min</span>
+        <span class="flex items-center gap-1">📅 Actualizado: 14 de octubre de 2026</span>
+        <span class="text-emerald-600 dark:text-emerald-400 font-medium">✓ Verificado</span>
       </div>
 
       <!-- Anuncio Superior -->
       
     <!-- ESPACIO DE ANUNCIO GOOGLE ADSENSE -->
-    <div class="my-8 p-4 bg-gray-50 border border-dashed border-gray-300 rounded-xl text-center text-xs text-gray-400">
-      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400">Publicidad</span>
-      <div class="min-h-[100px] flex items-center justify-center bg-white rounded border border-gray-200">
+    <div class="my-8 p-4 bg-gray-50 dark:bg-slate-800/80 border border-dashed border-gray-300 dark:border-slate-700 rounded-2xl text-center text-xs text-gray-400">
+      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400 dark:text-slate-400">Publicidad</span>
+      <div class="min-h-[100px] flex items-center justify-center bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800">
         <ins class="adsbygoogle"
              style="display:block; text-align:center;"
              data-ad-layout="in-article"
@@ -88,36 +136,36 @@
     
 
       <!-- Cuerpo del Artículo -->
-      <div class="prose max-w-none">
+      <div class="prose dark:prose-invert max-w-none text-base">
         
-        <p class="text-lg text-gray-700 leading-relaxed mb-6 font-medium">Ahorrar dinero todos los meses suele parecer difícil cuando no se tiene un sistema claro. La regla 50/30/20, popularizada por la profesora de Harvard Elizabeth Warren, es uno de los métodos presupuestarios más reconocidos a nivel global por su sencillez y eficacia.</p>
+        <p class="text-lg text-gray-700 dark:text-slate-300 leading-relaxed mb-6 font-medium">Ahorrar dinero todos los meses suele parecer difícil cuando no se tiene un sistema claro. La regla 50/30/20, popularizada por la profesora de Harvard Elizabeth Warren, es uno de los métodos presupuestarios más reconocidos a nivel global por su sencillez y eficacia.</p>
 
-        <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4 border-b border-gray-200 pb-2">1. ¿En qué consiste la división 50/30/20?</h2>
-        <p class="text-gray-700 mb-4">El método consiste en dividir tus <strong>ingresos netos mensuales</strong> en tres categorías estrictas:</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4 border-b border-gray-200 dark:border-slate-700 pb-2">1. ¿En qué consiste la división 50/30/20?</h2>
+        <p class="text-gray-700 dark:text-slate-300 mb-4">El método consiste en dividir tus <strong>ingresos netos mensuales</strong> en tres categorías estrictas:</p>
         
         <div class="grid md:grid-cols-3 gap-6 my-6">
-          <div class="bg-blue-50 border border-blue-200 p-5 rounded-xl">
-            <span class="text-blue-600 font-bold text-xl block mb-2">50% Necesidades</span>
-            <p class="text-gray-700 text-sm">Alquiler o hipoteca, suministros (luz, agua, internet), comida básica, transporte y seguros indispensables.</p>
+          <div class="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 p-5 rounded-2xl">
+            <span class="text-blue-600 dark:text-blue-400 font-bold text-xl block mb-2">50% Necesidades</span>
+            <p class="text-gray-700 dark:text-slate-300 text-sm">Alquiler o hipoteca, suministros (luz, agua, internet), comida básica, transporte y seguros indispensables.</p>
           </div>
-          <div class="bg-amber-50 border border-amber-200 p-5 rounded-xl">
-            <span class="text-amber-600 font-bold text-xl block mb-2">30% Deseos y Ocio</span>
-            <p class="text-gray-700 text-sm">Cenas fuera, suscripciones a streaming, salidas con amigos, ropa no esencial, aficiones y viajes.</p>
+          <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 p-5 rounded-2xl">
+            <span class="text-amber-600 dark:text-amber-400 font-bold text-xl block mb-2">30% Deseos y Ocio</span>
+            <p class="text-gray-700 dark:text-slate-300 text-sm">Cenas fuera, suscripciones a streaming, salidas con amigos, ropa no esencial, aficiones y viajes.</p>
           </div>
-          <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl">
-            <span class="text-emerald-600 font-bold text-xl block mb-2">20% Ahorro / Deudas</span>
-            <p class="text-gray-700 text-sm">Fondo de emergencias, inversión en fondos indexados o amortización acelerada de préstamos costosos.</p>
+          <div class="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 p-5 rounded-2xl">
+            <span class="text-emerald-600 dark:text-emerald-400 font-bold text-xl block mb-2">20% Ahorro / Inversión</span>
+            <p class="text-gray-700 dark:text-slate-300 text-sm">Fondo de emergencias, inversión en fondos indexados o amortización acelerada de préstamos costosos.</p>
           </div>
         </div>
 
-        <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4 border-b border-gray-200 pb-2">2. Ejemplo práctico con un sueldo de 1.500 € netos</h2>
-        <ul class="list-disc pl-6 space-y-2 text-gray-700 mb-6">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4 border-b border-gray-200 dark:border-slate-700 pb-2">2. Ejemplo práctico con un sueldo de 1.500 € netos</h2>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 dark:text-slate-300 mb-6">
           <li><strong>750 € (50%):</strong> Destinados al pago de la vivienda, compra en el supermercado y gastos fijos.</li>
           <li><strong>450 € (30%):</strong> Presupuesto libre para disfrutar del mes sin sentir culpa.</li>
           <li><strong>300 € (20%):</strong> Ahorro automático que se transfiere el día 1 de mes a una cuenta remunerada o fondo.</li>
         </ul>
 
-        <div class="bg-gray-100 p-5 rounded-xl text-gray-800 text-sm my-6">
+        <div class="bg-gray-100 dark:bg-slate-800 p-5 rounded-xl text-gray-800 dark:text-slate-200 text-sm my-6 border border-gray-200 dark:border-slate-700">
           <strong>⚡ El truco psicológico: "Págate a ti primero"</strong><br>
           En lugar de esperar a final de mes para ahorrar lo que sobre (que casi nunca sobra nada), programa una transferencia automática de ese 20% el mismo día en que cobras tu nómina.
         </div>
@@ -127,9 +175,9 @@
       <!-- Anuncio Inferior -->
       
     <!-- ESPACIO DE ANUNCIO GOOGLE ADSENSE -->
-    <div class="my-8 p-4 bg-gray-50 border border-dashed border-gray-300 rounded-xl text-center text-xs text-gray-400">
-      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400">Publicidad</span>
-      <div class="min-h-[100px] flex items-center justify-center bg-white rounded border border-gray-200">
+    <div class="my-8 p-4 bg-gray-50 dark:bg-slate-800/80 border border-dashed border-gray-300 dark:border-slate-700 rounded-2xl text-center text-xs text-gray-400">
+      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400 dark:text-slate-400">Publicidad</span>
+      <div class="min-h-[100px] flex items-center justify-center bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800">
         <ins class="adsbygoogle"
              style="display:block; text-align:center;"
              data-ad-layout="in-article"
@@ -142,10 +190,10 @@
     
 
       <!-- Caja de Conclusión / Compartir -->
-      <div class="mt-10 p-6 bg-emerald-50 rounded-xl border border-emerald-100">
-        <h3 class="font-bold text-emerald-900 text-lg mb-2">¿Te ha resultado útil esta guía?</h3>
-        <p class="text-emerald-800 text-sm mb-4">Guarda esta página en tus marcadores y compártela con quien quiera mejorar sus finanzas y pagar menos comisiones.</p>
-        <a href="../index.html" class="inline-block bg-emerald-600 text-white font-medium text-sm px-5 py-2.5 rounded-lg hover:bg-emerald-700 transition">Explorar más guías de finanzas</a>
+      <div class="mt-10 p-6 bg-emerald-50 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-800/60">
+        <h3 class="font-bold text-emerald-900 dark:text-emerald-300 text-lg mb-2">💡 ¿Te ha resultado útil esta guía?</h3>
+        <p class="text-emerald-800 dark:text-emerald-200/90 text-sm mb-4">Guarda esta página en tus marcadores y compártela con quien quiera mejorar sus finanzas y pagar menos comisiones.</p>
+        <a href="../index.html" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition shadow-sm">Explorar más guías de finanzas</a>
       </div>
     </article>
   </main>
@@ -164,13 +212,16 @@
 
   
   <!-- Banner de Consentimiento de Cookies (Obligatorio para Google AdSense / RGPD) -->
-  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-white border border-gray-200 p-5 rounded-2xl shadow-xl z-50 text-sm">
-    <p class="text-gray-700 mb-3">
-      Utilizamos cookies propias y de terceros (incluido Google AdSense) para analizar el tráfico y mostrar publicidad personalizada. Puedes consultar nuestra <a href="../legal/cookies.html" class="text-emerald-600 underline font-medium">Política de Cookies</a>.
-    </p>
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-5 rounded-2xl shadow-2xl z-50 text-sm">
+    <div class="flex items-start gap-3 mb-3">
+      <span class="text-xl">🍪</span>
+      <p class="text-gray-700 dark:text-slate-300 text-xs sm:text-sm">
+        Utilizamos cookies propias y de Google AdSense para analizar el tráfico y mostrar publicidad personalizada de acuerdo al RGPD. Consulta nuestra <a href="../legal/cookies.html" class="text-emerald-600 dark:text-emerald-400 underline font-medium">Política de Cookies</a>.
+      </p>
+    </div>
     <div class="flex gap-2 justify-end">
-      <button onclick="acceptCookies()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition">Aceptar todas</button>
-      <button onclick="rejectCookies()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2 rounded-lg text-xs transition">Rechazar</button>
+      <button onclick="acceptCookies()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition shadow-sm">Aceptar todas</button>
+      <button onclick="rejectCookies()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-700 dark:text-slate-200 font-semibold px-4 py-2 rounded-lg text-xs transition">Rechazar</button>
     </div>
   </div>
   <script>

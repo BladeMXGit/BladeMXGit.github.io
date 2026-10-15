@@ -4,50 +4,142 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finanzas Inteligentes | Guías de Ahorro, Impuestos e Inversión</title>
-  <meta name="description" content="Portal educativo de finanzas personales, optimización de impuestos, cuentas remuneradas y métodos prácticos para ahorrar e invertir con inteligencia.">
+  <meta name="description" content="Portal educativo de finanzas personales, optimización de impuestos, cuentas remuneradas y simulador interactivo para ahorrar e invertir con inteligencia.">
   <link rel="canonical" href="https://blademxgit.github.io/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Finanzas Inteligentes | Guías de Ahorro e Inversión">
-  <meta property="og:description" content="Aprende a gestionar tu dinero, calcular tu sueldo neto y rentabilizar tus ahorros sin complicaciones.">
+  <meta property="og:description" content="Aprende a gestionar tu dinero, calcular tu nómina y rentabilizar tus ahorros sin complicaciones.">
   <meta property="og:url" content="https://blademxgit.github.io/">
 
   <!-- Verificación oficial para Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-7532709201895063">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7532709201895063" crossorigin="anonymous"></script>
 
+  
+  <script>
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#0B0F19',
+            darkcard: '#161F30',
+            darkborder: '#233047'
+          }
+        }
+      }
+    }
+  </script>
+    
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased font-sans">
-  <!-- Barra de Navegación -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-extrabold text-emerald-600 flex items-center gap-2">
-        <span>📈 Finanzas Inteligentes</span>
+<body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-slate-100 antialiased font-sans transition-colors duration-200">
+  
+  <!-- Ticker Financiero en Vivo -->
+  <div class="bg-slate-900 text-slate-200 text-xs border-b border-slate-800 py-2.5 px-4 overflow-x-auto whitespace-nowrap">
+    <div class="max-w-6xl mx-auto flex items-center justify-between gap-6">
+      <div class="flex items-center gap-5 text-xs">
+        <span class="flex items-center gap-1.5 font-bold text-emerald-400"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Indicadores 2026:</span>
+        <span class="flex items-center gap-1">🏦 <span class="text-slate-400">Tipo BCE:</span> <strong class="text-emerald-400">3.25%</strong></span>
+        <span class="flex items-center gap-1">📉 <span class="text-slate-400">Euríbor 12M:</span> <strong class="text-emerald-400">2.78%</strong></span>
+        <span class="flex items-center gap-1">💰 <span class="text-slate-400">Cuentas Remuneradas:</span> <strong class="text-emerald-400">hasta 3.70% TAE</strong></span>
+        <span class="flex items-center gap-1">💶 <span class="text-slate-400">SMI España:</span> <strong class="text-white">1.184 €</strong></span>
+      </div>
+      <span class="hidden md:inline-block text-[11px] text-slate-400 bg-slate-800 px-2.5 py-0.5 rounded-full border border-slate-700">Actualizado diario</span>
+    </div>
+  </div>
+
+  <!-- Barra de Navegación Principal -->
+  <header class="bg-white/90 dark:bg-slate-900/90 border-b border-gray-200 dark:border-slate-800 sticky top-0 z-40 backdrop-blur-md shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      <a href="index.html" class="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
+        <span class="text-2xl">📈</span>
+        <span>Finanzas Inteligentes</span>
       </a>
-      <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-full">Edición 2026</span>
+      
+      <div class="flex items-center gap-3">
+        <a href="#simulador" class="hidden sm:inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 px-3 py-2 rounded-xl hover:bg-emerald-100 transition">
+          ⚡ Calculadora
+        </a>
+        
+    <button onclick="toggleDarkMode()" aria-label="Cambiar tema claro/oscuro" class="p-2 sm:px-3 sm:py-2 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-700 dark:text-amber-400 hover:bg-gray-100 dark:hover:bg-slate-700 transition flex items-center gap-2 text-xs font-semibold shadow-sm">
+      <svg class="w-4 h-4 hidden dark:block text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+      <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      <span class="hidden sm:inline text-gray-700 dark:text-slate-200">Modo</span>
+    </button>
+    
+      </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-b from-white to-gray-50 py-16 border-b border-gray-100 text-center px-4">
-    <div class="max-w-3xl mx-auto">
-      <span class="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2 block">Educación Financiera Práctica</span>
-      <h1 class="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mb-4">
-        Haz que tu dinero trabaje para ti, <span class="text-emerald-600">no al revés</span>.
+  <!-- Hero Section Mejorada con Gráficos y Métricas -->
+  <section class="relative bg-gradient-to-b from-white via-slate-50 to-gray-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/80 py-16 sm:py-20 border-b border-gray-200 dark:border-slate-800 overflow-hidden">
+    <!-- Luces y degradados de fondo -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-10 right-0 w-80 h-80 bg-blue-500/10 dark:bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+      <div class="inline-flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Educación Financiera 100% Práctica
+      </div>
+      
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight mb-6 tracking-tight">
+        Haz que tu dinero trabaje para ti, <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-400">no al revés</span>.
       </h1>
-      <p class="text-gray-600 text-base sm:text-lg mb-8 leading-relaxed">
-        Guías claras y paso a paso para calcular tu nómina, pagar menos impuestos legalmente y poner a rentar tus ahorros con riesgo cero.
+      
+      <p class="text-gray-600 dark:text-slate-300 text-base sm:text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
+        Guías sin rodeos para optimizar tu nómina, pagar menos IRPF legalmente y hacer crecer tus ahorros con el poder del interés compuesto.
       </p>
+
+      <!-- Badges de estadísticas rápidas -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto text-left">
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm">
+          <div class="text-xs text-gray-500 dark:text-slate-400 font-medium">Rentabilidad Media</div>
+          <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-1">7% - 8%</div>
+          <div class="text-[11px] text-gray-400 dark:text-slate-500">Histórica indexados</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm">
+          <div class="text-xs text-gray-500 dark:text-slate-400 font-medium">Ahorro en IRPF</div>
+          <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-1">Hasta 1.000€</div>
+          <div class="text-[11px] text-gray-400 dark:text-slate-500">Deducción alquiler</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm">
+          <div class="text-xs text-gray-500 dark:text-slate-400 font-medium">Garantía Bancaria</div>
+          <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-1">100.000 €</div>
+          <div class="text-[11px] text-gray-400 dark:text-slate-500">FGD por titular</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm">
+          <div class="text-xs text-gray-500 dark:text-slate-400 font-medium">Regla de Oro</div>
+          <div class="text-xl font-black text-emerald-600 dark:text-emerald-400 mt-1">50 / 30 / 20</div>
+          <div class="text-[11px] text-gray-400 dark:text-slate-500">Ahorro sistemático</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Espacio de Anuncio Principal AdSense -->
   <div class="max-w-5xl mx-auto px-4 my-8">
-    <div class="p-4 bg-white border border-dashed border-gray-300 rounded-xl text-center text-xs text-gray-400">
-      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400">Publicidad</span>
-      <div class="min-h-[90px] flex items-center justify-center bg-gray-50 rounded">
+    <div class="p-4 bg-white dark:bg-slate-800/80 border border-dashed border-gray-300 dark:border-slate-700 rounded-2xl text-center text-xs text-gray-400">
+      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400 dark:text-slate-400">Publicidad</span>
+      <div class="min-h-[90px] flex items-center justify-center bg-gray-50 dark:bg-slate-900 rounded-xl">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-7532709201895063"
@@ -59,107 +151,358 @@
     </div>
   </div>
 
-  <!-- Cuadrícula de Artículos -->
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-black text-gray-900">Guías Destacadas</h2>
-      <span class="text-sm text-gray-500">5 guías publicadas</span>
+  <!-- HERRAMIENTA INTERACTIVA: SIMULADOR DE INTERÉS COMPUESTO -->
+  <section class="max-w-6xl mx-auto px-4 py-4">
+    <div id="simulador" class="p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white shadow-2xl border border-emerald-500/30 relative overflow-hidden">
+      <!-- Glows -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              ⚡ Simulador Interactivo
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black mt-2 text-white">Calculadora de Crecimiento Financiero</h2>
+            <p class="text-slate-300 text-sm mt-1">Descubre cuánto dinero puedes acumular mes a mes gracias a la magia del interés compuesto.</p>
+          </div>
+          <div class="bg-slate-800/90 border border-slate-700 px-4 py-2 rounded-2xl text-right shadow-inner">
+            <span class="text-xs text-slate-400 block font-medium">Multiplicador de capital</span>
+            <span id="multiplier-badge" class="text-lg font-black text-emerald-400 font-mono">x1.45</span>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <!-- Controles / Sliders -->
+          <div class="space-y-6 bg-slate-800/80 p-6 sm:p-7 rounded-2xl border border-slate-700/80 backdrop-blur-md shadow-lg">
+            <!-- Slider 1: Aportación Mensual -->
+            <div>
+              <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                <span class="text-slate-200 flex items-center gap-2">💰 Aportación mensual:</span>
+                <span id="val-monthly" class="text-emerald-400 font-black text-xl font-mono">200 €</span>
+              </div>
+              <input type="range" id="input-monthly" min="20" max="1500" step="10" value="200"
+                     class="w-full h-2.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400">
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1.5 font-medium">
+                <span>20 €</span>
+                <span>500 €</span>
+                <span>1.500 €</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Años de inversión -->
+            <div>
+              <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                <span class="text-slate-200 flex items-center gap-2">⏳ Plazo de tiempo:</span>
+                <span id="val-years" class="text-emerald-400 font-black text-xl font-mono">10 años</span>
+              </div>
+              <input type="range" id="input-years" min="1" max="30" step="1" value="10"
+                     class="w-full h-2.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400">
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1.5 font-medium">
+                <span>1 año</span>
+                <span>15 años</span>
+                <span>30 años</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Rentabilidad esperada -->
+            <div>
+              <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                <span class="text-slate-200 flex items-center gap-2">📈 Rentabilidad anual (TAE):</span>
+                <span id="val-rate" class="text-emerald-400 font-black text-xl font-mono">7%</span>
+              </div>
+              <input type="range" id="input-rate" min="1" max="12" step="0.5" value="7"
+                     class="w-full h-2.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400">
+              <div class="flex justify-between text-[11px] text-slate-400 mt-1.5 font-medium">
+                <span>1% (Bancos)</span>
+                <span>7% (Indexados)</span>
+                <span>12% (Optimista)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resultados Visuales -->
+          <div class="space-y-4">
+            <div class="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-emerald-600/30 via-emerald-500/10 to-transparent border border-emerald-500/40 text-center shadow-lg">
+              <span class="text-xs uppercase tracking-wider text-slate-300 font-bold block mb-1">Total Estimado en tu Cuenta</span>
+              <div id="res-total" class="text-4xl sm:text-5xl font-black text-emerald-400 font-mono tracking-tight my-1">34.819 €</div>
+              <span class="text-xs text-slate-300">Capital listo para tu jubilación o metas</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-800/90 border border-slate-700">
+                <span class="text-xs text-slate-400 block mb-1">Ahorrado de tu sueldo</span>
+                <div id="res-invested" class="text-lg sm:text-xl font-bold text-slate-200 font-mono">24.000 €</div>
+                <span class="text-[11px] text-slate-400">Total aportado</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-800/90 border border-emerald-500/40">
+                <span class="text-xs text-emerald-400 block mb-1">🚀 Intereses generados</span>
+                <div id="res-interest" class="text-lg sm:text-xl font-bold text-emerald-400 font-mono">+10.819 €</div>
+                <span id="res-gain-percent" class="text-[11px] text-emerald-400 font-semibold">+45.1% extra</span>
+              </div>
+            </div>
+
+            <!-- Barra gráfica comparativa de capital vs intereses -->
+            <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+              <div class="flex justify-between text-xs text-slate-300 mb-2 font-medium">
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span> Tu esfuerzo (capital)</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span> Ganancia compuesta</span>
+              </div>
+              <div class="w-full h-3.5 bg-slate-700 rounded-full overflow-hidden flex shadow-inner">
+                <div id="bar-invested" class="h-full bg-blue-500 transition-all duration-300" style="width: 69%;"></div>
+                <div id="bar-interest" class="h-full bg-emerald-400 transition-all duration-300" style="width: 31%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script del Simulador Financiero -->
+  <script>
+    function updateCalculator() {
+      const monthly = parseFloat(document.getElementById('input-monthly').value);
+      const years = parseFloat(document.getElementById('input-years').value);
+      const rate = parseFloat(document.getElementById('input-rate').value) / 100;
+
+      document.getElementById('val-monthly').textContent = monthly.toLocaleString('es-ES') + ' €';
+      document.getElementById('val-years').textContent = years + (years === 1 ? ' año' : ' años');
+      document.getElementById('val-rate').textContent = (rate * 100).toFixed(1) + '% TAE';
+
+      const months = years * 12;
+      const r = rate / 12;
+      let total = 0;
+      if (r > 0) {
+        total = monthly * ((Math.pow(1 + r, months) - 1) / r);
+      } else {
+        total = monthly * months;
+      }
+      const invested = monthly * months;
+      const interest = total - invested;
+      const multiplier = invested > 0 ? (total / invested).toFixed(2) : 1;
+      const gainPercent = invested > 0 ? ((interest / invested) * 100).toFixed(1) : 0;
+
+      document.getElementById('res-total').textContent = Math.round(total).toLocaleString('es-ES') + ' €';
+      document.getElementById('res-invested').textContent = Math.round(invested).toLocaleString('es-ES') + ' €';
+      document.getElementById('res-interest').textContent = '+' + Math.round(interest).toLocaleString('es-ES') + ' €';
+      document.getElementById('res-gain-percent').textContent = '+' + gainPercent + '% de beneficio';
+      document.getElementById('multiplier-badge').textContent = 'x' + multiplier;
+
+      const investedPercent = Math.min(100, Math.max(0, (invested / total) * 100));
+      const interestPercent = 100 - investedPercent;
+      document.getElementById('bar-invested').style.width = investedPercent + '%';
+      document.getElementById('bar-interest').style.width = interestPercent + '%';
+    }
+
+    document.getElementById('input-monthly').addEventListener('input', updateCalculator);
+    document.getElementById('input-years').addEventListener('input', updateCalculator);
+    document.getElementById('input-rate').addEventListener('input', updateCalculator);
+    updateCalculator();
+  </script>
+
+  <!-- Cuadrícula de Artículos con Filtro por Categorías -->
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">Artículos y Guías Prácticas</h2>
+        <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">Explora nuestras guías paso a paso escritas para entender tus finanzas sin rodeos.</p>
+      </div>
+      <span class="text-xs bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold px-3 py-1.5 rounded-full border border-emerald-300 dark:border-emerald-800">
+        6 guías disponibles
+      </span>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Botones de filtro de categorías -->
+    <div class="flex flex-wrap gap-2 mb-8 items-center" id="category-filters">
+      <button onclick="filterCategory('all', this)" class="cat-pill active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-emerald-600 text-white shadow-sm flex items-center gap-1.5">
+        ⚡ Todas
+      </button>
+      <button onclick="filterCategory('impuestos', this)" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-1.5">
+        💶 Impuestos & Nóminas
+      </button>
+      <button onclick="filterCategory('ahorro', this)" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-1.5">
+        📊 Ahorro & Presupuesto
+      </button>
+      <button onclick="filterCategory('bancos', this)" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-1.5">
+        🏦 Cuentas & Inversión
+      </button>
+      <button onclick="filterCategory('seguridad', this)" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:border-emerald-500 flex items-center gap-1.5">
+        🛡️ Seguridad & Fondos
+      </button>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid">
       
-        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition p-6 flex flex-col justify-between">
+        <article class="article-card group bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700/80 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden" data-category="impuestos">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div>
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Impuestos y Nómina</span>
-              <span>⏱️ 6 min</span>
+            <div class="flex items-center justify-between text-xs mb-3">
+              <span class="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span>💶</span> Impuestos y Nómina
+              </span>
+              <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-[11px] font-semibold">Más Leído</span>
             </div>
-            <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-emerald-600 leading-snug">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-snug transition-colors">
               <a href="articulos/calcular-sueldo-neto-espana-bruto.html">Cómo calcular tu sueldo neto a partir del bruto en España: Guía paso a paso</a>
-            </h2>
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            </h3>
+            <p class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
               Aprende a calcular cuánto dinero recibirás en tu nómina tras retenciones de IRPF y Seguridad Social. Tablas de tramos y ejemplos prácticos.
             </p>
           </div>
-          <a href="articulos/calcular-sueldo-neto-espana-bruto.html" class="text-emerald-600 font-semibold text-sm hover:underline flex items-center gap-1 mt-2">
-            Leer guía completa →
-          </a>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700/60 mt-2">
+            <span class="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1">⏱️ 6 min</span>
+            <a href="articulos/calcular-sueldo-neto-espana-bruto.html" class="text-emerald-600 dark:text-emerald-400 font-bold text-sm hover:underline flex items-center gap-1">
+              Leer guía <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
         </article>
         
-        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition p-6 flex flex-col justify-between">
+        <article class="article-card group bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700/80 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden" data-category="ahorro">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div>
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Ahorro y Presupuesto</span>
-              <span>⏱️ 5 min</span>
+            <div class="flex items-center justify-between text-xs mb-3">
+              <span class="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span>📊</span> Ahorro y Presupuesto
+              </span>
+              <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-[11px] font-semibold">Imprescindible</span>
             </div>
-            <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-emerald-600 leading-snug">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-snug transition-colors">
               <a href="articulos/metodo-50-30-20-ahorro-personal.html">La regla 50/30/20: El método definitivo para organizar tu dinero y ahorrar sin sufrir</a>
-            </h2>
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            </h3>
+            <p class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
               Descubre cómo repartir tus ingresos mensuales según la famosa regla 50/30/20 para ahorrar el 20% de tu sueldo todos los meses de forma automática.
             </p>
           </div>
-          <a href="articulos/metodo-50-30-20-ahorro-personal.html" class="text-emerald-600 font-semibold text-sm hover:underline flex items-center gap-1 mt-2">
-            Leer guía completa →
-          </a>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700/60 mt-2">
+            <span class="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1">⏱️ 5 min</span>
+            <a href="articulos/metodo-50-30-20-ahorro-personal.html" class="text-emerald-600 dark:text-emerald-400 font-bold text-sm hover:underline flex items-center gap-1">
+              Leer guía <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
         </article>
         
-        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition p-6 flex flex-col justify-between">
+        <article class="article-card group bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700/80 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden" data-category="bancos">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div>
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Inversión y Bancos</span>
-              <span>⏱️ 7 min</span>
+            <div class="flex items-center justify-between text-xs mb-3">
+              <span class="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span>🏦</span> Inversión y Bancos
+              </span>
+              <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-[11px] font-semibold">Tendencia</span>
             </div>
-            <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-emerald-600 leading-snug">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-snug transition-colors">
               <a href="articulos/cuentas-remuneradas-mejores-opciones.html">Cuentas remuneradas vs Depósitos a plazo fijo: Dónde rentabilizar tu dinero seguro</a>
-            </h2>
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            </h3>
+            <p class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
               Comparativa de las mejores opciones para no perder poder adquisitivo con la inflación. Disponibilidad total frente a tipos de interés fijos.
             </p>
           </div>
-          <a href="articulos/cuentas-remuneradas-mejores-opciones.html" class="text-emerald-600 font-semibold text-sm hover:underline flex items-center gap-1 mt-2">
-            Leer guía completa →
-          </a>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700/60 mt-2">
+            <span class="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1">⏱️ 7 min</span>
+            <a href="articulos/cuentas-remuneradas-mejores-opciones.html" class="text-emerald-600 dark:text-emerald-400 font-bold text-sm hover:underline flex items-center gap-1">
+              Leer guía <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
         </article>
         
-        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition p-6 flex flex-col justify-between">
+        <article class="article-card group bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700/80 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden" data-category="seguridad">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div>
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Ahorro y Seguridad</span>
-              <span>⏱️ 5 min</span>
+            <div class="flex items-center justify-between text-xs mb-3">
+              <span class="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span>🛡️</span> Ahorro y Seguridad
+              </span>
+              <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-[11px] font-semibold">Básico</span>
             </div>
-            <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-emerald-600 leading-snug">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-snug transition-colors">
               <a href="articulos/que-es-un-fondo-de-emergencia-guia.html">Fondo de Emergencia: Cuántos meses de gastos necesitas y dónde guardarlo</a>
-            </h2>
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            </h3>
+            <p class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
               La piedra angular de cualquier economía familiar sana. Aprende a calcular el importe exacto para tu tranquilidad ante imprevistos laborales o médicos.
             </p>
           </div>
-          <a href="articulos/que-es-un-fondo-de-emergencia-guia.html" class="text-emerald-600 font-semibold text-sm hover:underline flex items-center gap-1 mt-2">
-            Leer guía completa →
-          </a>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700/60 mt-2">
+            <span class="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1">⏱️ 5 min</span>
+            <a href="articulos/que-es-un-fondo-de-emergencia-guia.html" class="text-emerald-600 dark:text-emerald-400 font-bold text-sm hover:underline flex items-center gap-1">
+              Leer guía <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
         </article>
         
-        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition p-6 flex flex-col justify-between">
+        <article class="article-card group bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700/80 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden" data-category="impuestos">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div>
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-              <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Impuestos y Renta</span>
-              <span>⏱️ 6 min</span>
+            <div class="flex items-center justify-between text-xs mb-3">
+              <span class="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span>🏠</span> Impuestos y Renta
+              </span>
+              <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-[11px] font-semibold">Ahorro Fiscal</span>
             </div>
-            <h2 class="text-xl font-bold text-gray-900 mb-3 hover:text-emerald-600 leading-snug">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-snug transition-colors">
               <a href="articulos/desgravar-alquiler-declaracion-renta.html">Cómo deducir el alquiler en la Declaración de la Renta: Deducción estatal y autonómica</a>
-            </h2>
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+            </h3>
+            <p class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
               Conoce los requisitos y casillas exactas para ahorrarte hasta 1.000€ en tu IRPF si vives de alquiler. Diferencias por comunidades autónomas.
             </p>
           </div>
-          <a href="articulos/desgravar-alquiler-declaracion-renta.html" class="text-emerald-600 font-semibold text-sm hover:underline flex items-center gap-1 mt-2">
-            Leer guía completa →
-          </a>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700/60 mt-2">
+            <span class="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1">⏱️ 6 min</span>
+            <a href="articulos/desgravar-alquiler-declaracion-renta.html" class="text-emerald-600 dark:text-emerald-400 font-bold text-sm hover:underline flex items-center gap-1">
+              Leer guía <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </article>
+        
+        <article class="article-card group bg-white dark:bg-slate-800/90 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 dark:border-slate-700/80 hover:border-emerald-500/50 dark:hover:border-emerald-400/50 transition-all duration-300 p-6 flex flex-col justify-between relative overflow-hidden" data-category="bancos">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div>
+            <div class="flex items-center justify-between text-xs mb-3">
+              <span class="bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                <span>📈</span> Inversión Pasiva
+              </span>
+              <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded text-[11px] font-semibold">Nueva</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 leading-snug transition-colors">
+              <a href="articulos/inversion-fondos-indexados-principiantes-guia.html">Inversión en Fondos Indexados para principiantes: Cómo empezar con 50€ al mes</a>
+            </h3>
+            <p class="text-gray-600 dark:text-slate-300 text-sm leading-relaxed mb-4 line-clamp-3">
+              Guía definitiva sobre MSCI World y S&P 500. Rentabilidad histórica del 7-8%, bajas comisiones y la magia del interés compuesto a largo plazo.
+            </p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700/60 mt-2">
+            <span class="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1">⏱️ 8 min</span>
+            <a href="articulos/inversion-fondos-indexados-principiantes-guia.html" class="text-emerald-600 dark:text-emerald-400 font-bold text-sm hover:underline flex items-center gap-1">
+              Leer guía <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
         </article>
         
     </div>
   </main>
+
+  <script>
+    function filterCategory(category, btn) {
+      const pills = document.querySelectorAll('.cat-pill');
+      pills.forEach(p => {
+        p.classList.remove('bg-emerald-600', 'text-white', 'shadow-sm');
+        p.classList.add('bg-white', 'dark:bg-slate-800', 'text-gray-700', 'dark:text-slate-300', 'border', 'border-gray-200', 'dark:border-slate-700');
+      });
+
+      btn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-gray-700', 'dark:text-slate-300', 'border-gray-200', 'dark:border-slate-700');
+      btn.classList.add('bg-emerald-600', 'text-white', 'shadow-sm');
+
+      const cards = document.querySelectorAll('.article-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
 
   <!-- Footer Legal Obligatorio para AdSense -->
   <footer class="bg-gray-900 text-gray-400 py-12 mt-20 text-sm border-t border-gray-800">
@@ -178,13 +521,16 @@
 
   
   <!-- Banner de Consentimiento de Cookies (Obligatorio para Google AdSense / RGPD) -->
-  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-white border border-gray-200 p-5 rounded-2xl shadow-xl z-50 text-sm">
-    <p class="text-gray-700 mb-3">
-      Utilizamos cookies propias y de terceros (incluido Google AdSense) para analizar el tráfico y mostrar publicidad personalizada. Puedes consultar nuestra <a href="legal/cookies.html" class="text-emerald-600 underline font-medium">Política de Cookies</a>.
-    </p>
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 p-5 rounded-2xl shadow-2xl z-50 text-sm">
+    <div class="flex items-start gap-3 mb-3">
+      <span class="text-xl">🍪</span>
+      <p class="text-gray-700 dark:text-slate-300 text-xs sm:text-sm">
+        Utilizamos cookies propias y de Google AdSense para analizar el tráfico y mostrar publicidad personalizada de acuerdo al RGPD. Consulta nuestra <a href="legal/cookies.html" class="text-emerald-600 dark:text-emerald-400 underline font-medium">Política de Cookies</a>.
+      </p>
+    </div>
     <div class="flex gap-2 justify-end">
-      <button onclick="acceptCookies()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition">Aceptar todas</button>
-      <button onclick="rejectCookies()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2 rounded-lg text-xs transition">Rechazar</button>
+      <button onclick="acceptCookies()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition shadow-sm">Aceptar todas</button>
+      <button onclick="rejectCookies()" class="bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-700 dark:text-slate-200 font-semibold px-4 py-2 rounded-lg text-xs transition">Rechazar</button>
     </div>
   </div>
   <script>
