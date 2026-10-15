@@ -91,10 +91,10 @@ def get_hud_navbar(is_subpage=False):
       <div class="flex items-stretch min-w-0">
         <a href="{prefix}index.html" class="flex items-center gap-2.5 px-4 sm:px-6 border-r border-gray-200 dark:border-hud-line hover:bg-gray-50 dark:hover:bg-hud-carddark transition">
           <div class="w-6 h-6 rounded bg-emerald-500 text-black font-mono font-black text-xs flex items-center justify-center shadow-sm">
-            FI
+            CC
           </div>
           <span class="font-mono font-bold tracking-tight text-sm text-gray-900 dark:text-white uppercase">
-            Finanzas<span class="text-emerald-500">.Craft</span>
+            Capital<span class="text-emerald-500">Craft</span>
           </span>
           <span class="hidden lg:inline-block font-mono text-[10px] text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded ml-1">
             v2.4
@@ -416,7 +416,7 @@ def render_article_html(topic: dict) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} | Finanzas.Craft</title>
+  <title>{title} | CapitalCraft</title>
   <meta name="description" content="{desc}">
   <link rel="canonical" href="{url}">
   
@@ -427,6 +427,26 @@ def render_article_html(topic: dict) -> str:
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{url}">
+
+  <!-- Schema.org JSON-LD para Google Search Rich Snippets -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{title}",
+    "description": "{desc}",
+    "author": {{
+      "@type": "Organization",
+      "name": "CapitalCraft"
+    }},
+    "publisher": {{
+      "@type": "Organization",
+      "name": "CapitalCraft"
+    }},
+    "datePublished": "{iso_date}",
+    "dateModified": "{iso_date}"
+  }}
+  </script>
 
   {get_head_assets()}
 </head>
@@ -485,8 +505,8 @@ def render_article_html(topic: dict) -> str:
   <footer class="border-t border-gray-200 dark:border-hud-line bg-white dark:bg-hud-bgdark py-12 mt-20 font-mono text-xs text-gray-500 dark:text-gray-400">
     <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
-        <span class="text-emerald-500 font-bold">[ FI // 2026 ]</span>
-        <span>Finanzas.Craft — Arquitectura Financiera Inteligente</span>
+        <span class="text-emerald-500 font-bold">[ CC // 2026 ]</span>
+        <span>CapitalCraft — Arquitectura Financiera Inteligente</span>
       </div>
       <div class="flex gap-6">
         <a href="../legal/aviso-legal.html" class="hover:text-emerald-500 transition">Aviso Legal</a>
@@ -551,12 +571,12 @@ def render_home_index_html(topics: list) -> str:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finanzas.Craft — Inteligencia y Control Financiero para tu Dinero</title>
+  <title>CapitalCraft — Inteligencia y Control Financiero para tu Dinero</title>
   <meta name="description" content="Portal de ingeniería financiera personal: optimización de nómina e IRPF, cuentas remuneradas y simulador interactivo de patrimonio e interés compuesto.">
   <link rel="canonical" href="{SITE_URL}/">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Finanzas.Craft — Control Financiero Inteligente">
+  <meta property="og:title" content="CapitalCraft — Control Financiero Inteligente">
   <meta property="og:description" content="Haz que tu dinero trabaje para ti con ingeniería de ahorro e inversión pasiva.">
   <meta property="og:url" content="{SITE_URL}/">
 
@@ -874,8 +894,8 @@ def render_home_index_html(topics: list) -> str:
   <footer class="border-t border-gray-200 dark:border-hud-line bg-white dark:bg-hud-bgdark py-12 mt-20 font-mono text-xs text-gray-500 dark:text-gray-400">
     <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
-        <span class="text-emerald-500 font-bold">[ FI // 2026 ]</span>
-        <span>Finanzas.Craft — Arquitectura Financiera Inteligente</span>
+        <span class="text-emerald-500 font-bold">[ CC // 2026 ]</span>
+        <span>CapitalCraft — Arquitectura Financiera Inteligente</span>
       </div>
       <div class="flex gap-6">
         <a href="legal/aviso-legal.html" class="hover:text-emerald-500 transition">Aviso Legal</a>
