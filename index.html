@@ -13,6 +13,10 @@
   <meta property="og:description" content="Aprende a gestionar tu dinero, calcular tu sueldo neto y rentabilizar tus ahorros sin complicaciones.">
   <meta property="og:url" content="https://blademxgit.github.io/finanzas-inteligentes/">
 
+  <!-- Verificación oficial para Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased font-sans">
@@ -42,9 +46,15 @@
   <!-- Espacio de Anuncio Principal AdSense -->
   <div class="max-w-5xl mx-auto px-4 my-8">
     <div class="p-4 bg-white border border-dashed border-gray-300 rounded-xl text-center text-xs text-gray-400">
-      <span class="block uppercase tracking-wider mb-2 font-semibold">Espacio Publicitario Google AdSense</span>
-      <div class="min-h-[90px] flex items-center justify-center bg-gray-50 rounded text-gray-400">
-        Anuncio Adaptable
+      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400">Publicidad</span>
+      <div class="min-h-[90px] flex items-center justify-center bg-gray-50 rounded">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
   </div>
@@ -165,5 +175,37 @@
       <p class="text-xs text-gray-600">&copy; 2026 Finanzas Inteligentes. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  
+  <!-- Banner de Consentimiento de Cookies (Obligatorio para Google AdSense / RGPD) -->
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-white border border-gray-200 p-5 rounded-2xl shadow-xl z-50 text-sm">
+    <p class="text-gray-700 mb-3">
+      Utilizamos cookies propias y de terceros (incluido Google AdSense) para analizar el tráfico y mostrar publicidad personalizada. Puedes consultar nuestra <a href="legal/cookies.html" class="text-emerald-600 underline font-medium">Política de Cookies</a>.
+    </p>
+    <div class="flex gap-2 justify-end">
+      <button onclick="acceptCookies()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition">Aceptar todas</button>
+      <button onclick="rejectCookies()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2 rounded-lg text-xs transition">Rechazar</button>
+    </div>
+  </div>
+  <script>
+    function checkCookies() {
+      if (localStorage.getItem('cookie_consent')) {
+        var el = document.getElementById('cookie-banner');
+        if (el) el.style.display = 'none';
+      }
+    }
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      var el = document.getElementById('cookie-banner');
+      if (el) el.style.display = 'none';
+    }
+    function rejectCookies() {
+      localStorage.setItem('cookie_consent', 'rejected');
+      var el = document.getElementById('cookie-banner');
+      if (el) el.style.display = 'none';
+    }
+    checkCookies();
+  </script>
+    
 </body>
 </html>

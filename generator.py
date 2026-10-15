@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import os
 import re
 import json
@@ -16,9 +16,45 @@ BASE_DIR = Path(__file__).resolve().parent
 ARTICULOS_DIR = BASE_DIR / "articulos"
 SITE_URL = "https://blademxgit.github.io/finanzas-inteligentes"
 
+# Google AdSense Publisher ID (Configurable via env var or placeholder)
+ADSENSE_PUB_ID = os.getenv("ADSENSE_PUB_ID", "ca-pub-XXXXXXXXXXXXXXXX")
+
 # Fixed publish date (only change it when the content really changes)
 PUBLISH_DATE_ISO = "2026-10-14"
 PUBLISH_DATE_ES = "14 de octubre de 2026"
+
+def get_cookie_banner(prefix=""):
+    return f"""
+  <!-- Banner de Consentimiento de Cookies (Obligatorio para Google AdSense / RGPD) -->
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md bg-white border border-gray-200 p-5 rounded-2xl shadow-xl z-50 text-sm">
+    <p class="text-gray-700 mb-3">
+      Utilizamos cookies propias y de terceros (incluido Google AdSense) para analizar el tráfico y mostrar publicidad personalizada. Puedes consultar nuestra <a href="{prefix}legal/cookies.html" class="text-emerald-600 underline font-medium">Política de Cookies</a>.
+    </p>
+    <div class="flex gap-2 justify-end">
+      <button onclick="acceptCookies()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition">Aceptar todas</button>
+      <button onclick="rejectCookies()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2 rounded-lg text-xs transition">Rechazar</button>
+    </div>
+  </div>
+  <script>
+    function checkCookies() {{
+      if (localStorage.getItem('cookie_consent')) {{
+        var el = document.getElementById('cookie-banner');
+        if (el) el.style.display = 'none';
+      }}
+    }}
+    function acceptCookies() {{
+      localStorage.setItem('cookie_consent', 'accepted');
+      var el = document.getElementById('cookie-banner');
+      if (el) el.style.display = 'none';
+    }}
+    function rejectCookies() {{
+      localStorage.setItem('cookie_consent', 'rejected');
+      var el = document.getElementById('cookie-banner');
+      if (el) el.style.display = 'none';
+    }}
+    checkCookies();
+  </script>
+    """
 
 # Curated catalog of high-paying Google AdSense search queries (Spain/LatAm)
 TOPICS = [
@@ -214,7 +250,7 @@ def render_article_html(topic: dict) -> str:
     url = f"{SITE_URL}/articulos/{slug}.html"
 
     # AdSense Placement Templates (Ready for publisher client ID)
-    ad_box = """
+    ad_box = f"""
     <!-- ESPACIO DE ANUNCIO GOOGLE ADSENSE -->
     <div class="my-8 p-4 bg-gray-50 border border-dashed border-gray-300 rounded-xl text-center text-xs text-gray-400">
       <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400">Publicidad</span>
@@ -223,8 +259,9 @@ def render_article_html(topic: dict) -> str:
              style="display:block; text-align:center;"
              data-ad-layout="in-article"
              data-ad-format="fluid"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-client="{ADSENSE_PUB_ID}"
              data-ad-slot="XXXXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
       </div>
     </div>
     """
@@ -238,6 +275,10 @@ def render_article_html(topic: dict) -> str:
   <meta name="description" content="{desc}">
   <link rel="canonical" href="{url}">
   
+  <!-- Verificación oficial para Google AdSense -->
+  <meta name="google-adsense-account" content="{ADSENSE_PUB_ID}">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_PUB_ID}" crossorigin="anonymous"></script>
+
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="{title}">
@@ -263,9 +304,6 @@ def render_article_html(topic: dict) -> str:
     "dateModified": "{iso_date}"
   }}
   </script>
-
-  <!-- Google AdSense Script (Listo para insertar tu ID ca-pub) -->
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -331,6 +369,8 @@ def render_article_html(topic: dict) -> str:
       <p class="text-xs text-gray-500">&copy; 2026 Finanzas Inteligentes. El contenido de este portal tiene fines exclusivamente educativos y no constituye asesoramiento financiero formal.</p>
     </div>
   </footer>
+
+  {get_cookie_banner(prefix="../")}
 </body>
 </html>
 """
@@ -379,6 +419,10 @@ def render_home_index_html(topics: list) -> str:
   <meta property="og:description" content="Aprende a gestionar tu dinero, calcular tu sueldo neto y rentabilizar tus ahorros sin complicaciones.">
   <meta property="og:url" content="{SITE_URL}/">
 
+  <!-- Verificación oficial para Google AdSense -->
+  <meta name="google-adsense-account" content="{ADSENSE_PUB_ID}">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_PUB_ID}" crossorigin="anonymous"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased font-sans">
@@ -408,9 +452,15 @@ def render_home_index_html(topics: list) -> str:
   <!-- Espacio de Anuncio Principal AdSense -->
   <div class="max-w-5xl mx-auto px-4 my-8">
     <div class="p-4 bg-white border border-dashed border-gray-300 rounded-xl text-center text-xs text-gray-400">
-      <span class="block uppercase tracking-wider mb-2 font-semibold">Espacio Publicitario Google AdSense</span>
-      <div class="min-h-[90px] flex items-center justify-center bg-gray-50 rounded text-gray-400">
-        Anuncio Adaptable
+      <span class="block uppercase tracking-wider mb-2 font-semibold text-gray-400">Publicidad</span>
+      <div class="min-h-[90px] flex items-center justify-center bg-gray-50 rounded">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="{ADSENSE_PUB_ID}"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
       </div>
     </div>
   </div>
@@ -441,6 +491,8 @@ def render_home_index_html(topics: list) -> str:
       <p class="text-xs text-gray-600">&copy; 2026 Finanzas Inteligentes. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  {get_cookie_banner(prefix="")}
 </body>
 </html>
 """

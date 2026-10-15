@@ -1,0 +1,3 @@
+# Archivo ads.txt para verificación oficial de Google AdSense
+# Reemplaza pub-XXXXXXXXXXXXXXXX con tu ID numérico de editor cuando crees tu cuenta
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
